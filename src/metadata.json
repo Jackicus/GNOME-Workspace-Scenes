@@ -1,0 +1,9 @@
+{
+  "uuid": "workspace-scenes@jackicus",
+  "name": "Workspace Scenes",
+  "description": "Workspace switches as a camera move through an anime-styled scene: a curved corridor, a lift shaft, a warp tunnel and more.",
+  "settings-schema": "org.gnome.shell.extensions.workspace-scenes",
+  "shell-version": [ "50" ],
+  "url": "https://github.com/Jackicus/GNOME-Workspace-Scenes",
+  "version-name": "0.1"
+}
