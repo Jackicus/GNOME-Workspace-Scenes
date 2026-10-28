@@ -20,7 +20,7 @@ The scenes take their colour from your accent colour. Touchpad swipes keep GNOME
 
 ## Requirements
 
-GNOME Shell 50.
+GNOME Shell 51.
 
 ## Privacy and network
 
