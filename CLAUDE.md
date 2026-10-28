@@ -15,7 +15,7 @@ src/prefs.js            preferences (own process: Gtk and Adw only; imports lib/
 src/schemas/            org.gnome.shell.extensions.workspace-scenes
 src/lib/app.js          WorkspaceScenesApp: replaces the controller's animateSwitch, runs a switch
 src/lib/view.js         WorkspaceScenesView: one monitor's switch (shader backdrop, two cards)
-src/lib/shader.js       a Shell.GLSLEffect class per scene, kept across disable and enable
+src/lib/shader.js       a Clutter.ShaderEffect class per scene, kept across disable and enable
 src/lib/scenes.js       the catalogue, the shared GLSL (prelude and main) and the camera path
 src/lib/corridor.js     one module per scene: its GLSL and its numbers for the camera and cards
 src/lib/shaft.js, warp.js, sky.js
@@ -83,15 +83,16 @@ a switch needs four static workspaces there, and `duration` 2000 to catch its ph
 
 ## Compatibility
 
-Shell 51 only. Read 2026-10-28 at gnome-shell 50.5 → 51.1 (`ui/panelMenu.js`,
-`ui/panel.js`, `extensions/`): `PanelMenu.Button._init(alignment, name)` and
-`addToStatusArea` are unchanged, and nothing it uses moved. Booted on GNOME Shell 51.1
-(nested, main desktop). No private API.
+Shell 51 only. Read 2026-10-28 at gnome-shell 51.1: `ui/workspaceAnimation.js` is the
+same as at 50.5, and every reach in `docs/private-api.md` is there. `Shell.GLSLEffect` is
+gone in 51, so each scene is a `Clutter.ShaderEffect` returning its snippet from
+`vfunc_get_static_snippet()`; every uniform is at most a vec4, which is all its
+`set_uniform_float()` holds. Booted on GNOME Shell 51.1 (nested, main desktop).
 
 ## Gotchas
 
-- **Shell 51 removes `Shell.GLSLEffect`** (`docs/private-api.md`): porting needs a new
-  effect base.
+- **A uniform wider than a vec4** (an array) cannot go through `set_uniform_float()`:
+  it is written to the effect's pipeline in `vfunc_paint_target`, as Wallpaper FX does.
 - **Wallpaper FX also wraps this controller** (`_prepareWorkspaceSwitch`); what it adds
   rides inside the workspace groups this extension moves.
 - **The shell's workspace switcher pop-up** shows over the scene; it is the shell's own.

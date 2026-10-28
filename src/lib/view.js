@@ -114,6 +114,5 @@ export const WorkspaceScenesView = GObject.registerClass({
         fx.setUniform('u_card_a', rectA);
         fx.setUniform('u_card_b', rectB);
         fx.setUniform('u_card_alpha', [alphaA, alphaB]);
-        fx.queue_repaint();
     }
 });
