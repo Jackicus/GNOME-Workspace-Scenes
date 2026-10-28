@@ -4,7 +4,7 @@ Workspace switches as a camera move through an anime-styled scene: a curved corr
 
 ## Requirements
 
-GNOME Shell 50.
+GNOME Shell 51.
 
 ## Privacy and network
 
