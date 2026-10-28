@@ -22,6 +22,9 @@ $N --schemadir src/schemas set org.gnome.shell.extensions.workspace-scenes scene
     "wait 0.25" "shot $S/3.png" "wait 0.25" "shot $S/4.png" "wait 0.25" "shot $S/5.png"
 ```
 
+- **Take a `shot` before the first switch after `start`**: until one, the nested shell
+  still reports the overview as visible, so the shell skips the switch animation
+  (`_shouldAnimate()`) and nothing of this extension runs.
 - **Phases at 2000 ms**: the pull back is the first quarter, the incoming workspace
   appears in the last third. A shot takes about a tenth of a second, so the waits are
   approximate; tile the PNGs into one sheet to judge the run.
