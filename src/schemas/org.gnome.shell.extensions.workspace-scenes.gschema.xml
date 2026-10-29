@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
     <schema id="org.gnome.shell.extensions.workspace-scenes" path="/org/gnome/shell/extensions/workspace-scenes/">
-        <key name="show-indicator" type="b">
+        <key name="scene" type="s">
+            <choices>
+                <choice value="corridor"/>
+                <choice value="shaft"/>
+                <choice value="warp"/>
+                <choice value="sky"/>
+                <choice value="random"/>
+            </choices>
+            <default>'corridor'</default>
+            <summary>Scene</summary>
+            <description>The scene a switch passes through, or "random" for a different one each time.</description>
+        </key>
+        <key name="duration" type="i">
+            <range min="400" max="2000"/>
+            <default>900</default>
+            <summary>Duration</summary>
+            <description>Milliseconds a switch to the next workspace takes; a longer jump takes up to half as long again.</description>
+        </key>
+        <key name="step-rate" type="i">
+            <range min="0" max="30"/>
+            <default>12</default>
+            <summary>Scene drawings per second</summary>
+            <description>How often the scene is redrawn, as anime holds each drawing for two or three frames. 0 draws it on every frame. The workspaces always move smoothly.</description>
+        </key>
+        <key name="focus-lines" type="b">
             <default>true</default>
-            <summary>Show the indicator</summary>
-            <description>Whether the extension's icon is in the top bar.</description>
+            <summary>Focus lines</summary>
+            <description>Radial speed lines while the camera is at speed.</description>
+        </key>
+        <key name="impact-frame" type="b">
+            <default>false</default>
+            <summary>Impact frame</summary>
+            <description>One inverted drawing of the scene as the new workspace arrives.</description>
         </key>
     </schema>
 </schemalist>
